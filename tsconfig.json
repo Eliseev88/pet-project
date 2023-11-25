@@ -1,0 +1,33 @@
+{
+    "compilerOptions": {
+        // куда производится сборка (не важна тк использует вебпак)
+        "outDir": "./dist/",
+        // Подсвечивает все места где не указан тип
+        "noImplicitAny": true,
+        // указываем модульную систему (commonjs, es6 и тд)
+        "module": "ESNext",
+        // версия стандарта ecma script в которую будет компилироваться код
+        "target": "es5",
+        // для того чтобы писать jsx-конструкции в компонентах
+        "jsx": "react-jsx",
+        // позволяет компилятору обрабатывать не только TS файлы, но и JS файлы
+        "allowJs": true,
+        // включаем строгий режим
+        "strict": false,
+        // определяет какие импорты будут (node или classic)/обычно node
+        "moduleResolution": "node",
+        // Для корректных импортов в вебпак пакетов commonjs (которые с помощью require)
+        "esModuleInterop": true,
+        // Для поддержки default import в пакетах которые их изначально не поддерживают (позволяет использовать обычный import без *)
+        "allowSyntheticDefaultImports": true,
+        // Для абсолютного импорта
+        "baseUrl": ".",
+    },
+
+    // если в module указано что-то кроме commonjs, то нужна эта настройка, тк ts-node по умолчанию работает только с commonjs
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS"
+        }
+    },
+}
