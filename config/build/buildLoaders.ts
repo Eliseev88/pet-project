@@ -11,6 +11,41 @@ export function buildLoaders(options: BuildOptions): RuleSetRule[] {
 
     // порядок при котором лоадеры возвращаются в массиве имеет значение!
 
+    const svgLoader = {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+    }
+
+    const fileLoader = {
+        test: /\.(png|jpe?g|gif)$/i, // можно добавить расширение для шрифтов
+        use: [
+            {
+                loader: 'file-loader',
+            },
+        ]
+    }
+
+    // если бы не использовали ts (тайпскипт-лоадер) то для работы с реакт и jsx нужен babel
+    const babelLoader = {
+        test:  /\.(js|jsx|tsx)$/, // настраиваем регулярку на поиск tsx файлов
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: [
+                // плагин для поиска ключей перевода в приложении (t('Главная')) при сборке и вынесении их в отдельные файлы
+                ['i18next-extract', {
+                    locales: [
+                        'en',
+                        'ru',
+                    ],
+                    keyAsDefaultValue: true
+                }]
+            ]
+          }
+        }
+    }
 
     const cssLoader = {
         test: /\.s[ac]ss$/i, // регулярка настроена на saas и scss файлы именно для препроцессора
@@ -48,6 +83,10 @@ export function buildLoaders(options: BuildOptions): RuleSetRule[] {
     }
 
     return [
+        fileLoader,
+        svgLoader,
+        // должен идти строго перед тайпспритлоадер
+        babelLoader,
         typescriptLoader,
         cssLoader
     ]

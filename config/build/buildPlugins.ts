@@ -2,6 +2,7 @@
 
 // плагин для генерации html файла сборки
 import HTMLWebpackPlugin from 'html-webpack-plugin';
+import webpack from 'webpack';
 import { WebpackPluginInstance, ProgressPlugin } from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
@@ -10,7 +11,7 @@ import { BuildOptions } from './types/config';
 
 
 // WebpackPluginInstance - тип для типизации плагинов вебпака
-export function buildPlugins ({paths}: BuildOptions): WebpackPluginInstance[] {
+export function buildPlugins ({paths, isDev}: BuildOptions): WebpackPluginInstance[] {
     // порядок плагинов в массиве значения не имеет
     return [
         // Создает в папке build index.html файл и автоматически подключает в нем все файлы с js скриптами
@@ -27,6 +28,16 @@ export function buildPlugins ({paths}: BuildOptions): WebpackPluginInstance[] {
           filename: 'css/[name].[contenthash:8].css',
           // При разбивании файлов на асинхронные будут появляться отедльные файлы стилей для этих чанков
           chunkFilename: 'css/[name].[contenthash:8].css',
-        })
+        }),
+
+        // для прокидывания глобальных переменных в само приложение
+        new webpack.DefinePlugin({
+            __IS_DEV__: JSON.stringify(isDev),
+            // __API__: JSON.stringify(apiUrl),
+            // __PROJECT__: JSON.stringify(project),
+        }),
+
+        // для обновления страницы без перезагрузки при внесении изменений стили
+        new webpack.HotModuleReplacementPlugin(),
       ]
 }

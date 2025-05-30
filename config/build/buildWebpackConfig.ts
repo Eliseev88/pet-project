@@ -53,7 +53,7 @@ export function buildWebpackConfig(options: BuildOptions /* в качестве 
         },
 
         // Подключаем резовлеры
-        resolve: buildResolvers(),
+        resolve: buildResolvers(options),
 
         // для создания map для отслеживания в каких именно файлах и ф-ция произошла ошибка при сборке
         devtool: isDev ? 'inline-source-map' : undefined, // Если сборка в режиме дев то подключаем soucemap
