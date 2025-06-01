@@ -1,6 +1,5 @@
 export type BuildMode = 'production' | 'development';
 
-
 export interface BuildPaths {
     // путь до входной точки
     entry: string;
@@ -18,7 +17,6 @@ export interface BuildEnv {
     port: number;
     apiUrl: string;
 }
-
 
 // Интерфейс описания опций сборки (передается как аргумент в ф-ции конструкторы вебпака)
 export interface BuildOptions {

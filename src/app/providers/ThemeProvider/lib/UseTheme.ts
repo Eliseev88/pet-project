@@ -1,10 +1,9 @@
 // Кастомный хук для получения и переключения темы в любой точке приложения
 
-import { useContext } from "react";
+import { useContext } from 'react';
 
 // импортируем контекст темы для получения его в компоненте через хук useContext
-import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from "./ThemeContext";
-
+import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from './ThemeContext';
 
 // интерфейс который определяет какие данные возвращает этот хук
 interface UseThemeResult {
@@ -13,9 +12,8 @@ interface UseThemeResult {
 }
 
 export function useTheme(): UseThemeResult {
-
     // получаем текущую тему из контекста темы
-    const {theme, setTheme} = useContext(ThemeContext);
+    const { theme, setTheme } = useContext(ThemeContext);
 
     const toggleTheme = () => {
         // устанавливаем выбранную тему
@@ -24,10 +22,10 @@ export function useTheme(): UseThemeResult {
 
         // записываем выбранную тему в ЛС
         localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
-    }
+    };
 
     return {
         theme,
         toggleTheme,
-    }
+    };
 }
