@@ -20,33 +20,33 @@ import { buildWebpackConfig } from './config/build/buildWebpackConfig';
 // которая принимает объект с этими переменными и возвращет сам конфиг вебпака
 export default (env: BuildEnv) => {
 
-  // объявляем список путей для передачи в качестве аргумента в ф-цию конструктора конфига вебпака
-  const paths: BuildPaths = {
-    entry: path.resolve(__dirname, 'src', 'index.tsx'), // склеиваем участки пути (дирнейм папка в которой находимся)
-    build: path.resolve(__dirname, 'build'),
-    html: path.resolve(__dirname, 'public', 'index.html'),
-    src: path.resolve(__dirname, 'src'),
-  };
+	// объявляем список путей для передачи в качестве аргумента в ф-цию конструктора конфига вебпака
+	const paths: BuildPaths = {
+		entry: path.resolve(__dirname, 'src', 'index.tsx'), // склеиваем участки пути (дирнейм папка в которой находимся)
+		build: path.resolve(__dirname, 'build'),
+		html: path.resolve(__dirname, 'public', 'index.html'),
+		src: path.resolve(__dirname, 'src'),
+	};
 
 
 
-  // в первую очередь при сборке пытаемся получить значения из переменной окружения (в скриптазх в package.json) при выполенини команды webpack server --env
-  const mode = env.mode || 'development';
+	// в первую очередь при сборке пытаемся получить значения из переменной окружения (в скриптазх в package.json) при выполенини команды webpack server --env
+	const mode = env.mode || 'development';
 
-  // порт девсервера вебпака
-  const PORT = env.port || 3000;
+	// порт девсервера вебпака
+	const PORT = env.port || 3000;
 
-  // если делаем сборку в режиме разработчика значит isDev = true
-  const isDev = mode === 'development';
+	// если делаем сборку в режиме разработчика значит isDev = true
+	const isDev = mode === 'development';
 
 
-  // Configuration - типизация конфигурационного файла вебпака чтобы работал автокомплит
-  const config: webpack.Configuration = buildWebpackConfig({
-    mode,
-    paths,
-    isDev,
-    port: PORT,
-  });
+	// Configuration - типизация конфигурационного файла вебпака чтобы работал автокомплит
+	const config: webpack.Configuration = buildWebpackConfig({
+		mode,
+		paths,
+		isDev,
+		port: PORT,
+	});
 
-  return config;
-}
+	return config;
+};

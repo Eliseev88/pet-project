@@ -3,8 +3,8 @@ import { lazy } from 'react';
 
 // для выноса страницы в отдельный чанк
 export const MainPageAsync = lazy(() => new Promise((res) => {
-    // @ts-ignore
-    setTimeout(() => res(import('./MainPage')), 1500); // в импорт передаем необходимый компонент (обязательно должен быть экспортирован по дефолту)
+	// @ts-expect-error - чтобы не ругался на импорт внутри
+	setTimeout(() => res(import('./MainPage')), 1500); // в импорт передаем необходимый компонент (обязательно должен быть экспортирован по дефолту)
 }));
 
 

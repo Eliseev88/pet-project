@@ -2,7 +2,6 @@
 //const path = require('path');
 
 // тк изменили язык вебпака с js на ts теперь вместо require может использовать import (он идет в ts по умолчанию)
-import path from 'path';
 
 import { Configuration } from 'webpack';
 
@@ -18,47 +17,47 @@ import { buildDevServer } from './buildDevServer';
 // Configuration - тип который должен возвращать конфигурацию вебпака
 export function buildWebpackConfig(options: BuildOptions /* в качестве options принимаем мод, пути, isDev и др */): Configuration {
 
-    // деструкторизируем объект с опциями
-    const {paths, mode, isDev} = options;
+	// деструкторизируем объект с опциями
+	const {paths, mode, isDev} = options;
 
-    return {
+	return {
 
-        // указваем в каком режиме производить сборку
-        mode,
-
-
-        // стартовая точка приложения
-        entry: paths.entry,
+		// указваем в каком режиме производить сборку
+		mode,
 
 
-        // куда будет делаться сборка
-        output: {
-            // указываем имя в квадратных скобках для динамического подставления имен (по умолчанию main.js)
-            // [contenthash] указываем для подставление хэша чтобы браузер всегда отдавал новый файл а не из кэша
-            filename: '[name].[contenthash].js', // имя главного файла в сборки
-            path: paths.build,
-            clean: true // для очистки дирректории от старых файлов сборки
-        },
+		// стартовая точка приложения
+		entry: paths.entry,
 
 
-        // Подключаем плагины
-        plugins: buildPlugins(options),
+		// куда будет делаться сборка
+		output: {
+			// указываем имя в квадратных скобках для динамического подставления имен (по умолчанию main.js)
+			// [contenthash] указываем для подставление хэша чтобы браузер всегда отдавал новый файл а не из кэша
+			filename: '[name].[contenthash].js', // имя главного файла в сборки
+			path: paths.build,
+			clean: true // для очистки дирректории от старых файлов сборки
+		},
 
 
-        // Подключаем лоадеры
-        module: {
-            // в рулсах конфигурируются лоадеры
-            // лоадеры обрабатывают файлы которые выходят за рамки джаваскрипт
-            rules: buildLoaders(options),
-        },
+		// Подключаем плагины
+		plugins: buildPlugins(options),
 
-        // Подключаем резовлеры
-        resolve: buildResolvers(options),
 
-        // для создания map для отслеживания в каких именно файлах и ф-ция произошла ошибка при сборке
-        devtool: isDev ? 'inline-source-map' : undefined, // Если сборка в режиме дев то подключаем soucemap
+		// Подключаем лоадеры
+		module: {
+			// в рулсах конфигурируются лоадеры
+			// лоадеры обрабатывают файлы которые выходят за рамки джаваскрипт
+			rules: buildLoaders(options),
+		},
 
-        // для запуска девсервера вебпака
-        devServer: isDev ? buildDevServer(options) : undefined, // для запуска девсервера только в дев сборки
-    };
+		// Подключаем резовлеры
+		resolve: buildResolvers(options),
+
+		// для создания map для отслеживания в каких именно файлах и ф-ция произошла ошибка при сборке
+		devtool: isDev ? 'inline-source-map' : undefined, // Если сборка в режиме дев то подключаем soucemap
+
+		// для запуска девсервера вебпака
+		devServer: isDev ? buildDevServer(options) : undefined, // для запуска девсервера только в дев сборки
+	};
 }

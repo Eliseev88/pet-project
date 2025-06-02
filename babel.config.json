@@ -1,6 +1,7 @@
 // активируем пресет для ES2015+
 {
-  "presets": ["@babel/preset-env"],
+  // @babel/preset-typescript - для корректной работы jest с ts
+  "presets": ["@babel/preset-env", "@babel/preset-typescript"],
    // плагин для поиска ключей перевода при сборке и добавлении их автоматически
    "plugins": [
     "i18next-extract"

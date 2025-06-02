@@ -20,23 +20,23 @@ interface ThemeProviderProps {
 }
 
 const ThemeProvider: FC<ThemeProviderProps> = (props) => {
-    const { initialTheme, children } = props;
+	const { children } = props;
 
-    // в качестве типа передаем перечисление enum со списком существующих тем на выбор
-    const [theme, setTheme] = useState<Theme>(defaultTheme); // по дефолфту устанавливаем тему полученную из ЛС
+	// в качестве типа передаем перечисление enum со списком существующих тем на выбор
+	const [theme, setTheme] = useState<Theme>(defaultTheme); // по дефолфту устанавливаем тему полученную из ЛС
 
-    // Для того чтоб статичный объект не перерисовывался (на каждый рендер компонента) используем useMemo
-    const defaultProps = useMemo(() => ({
-        theme,
-        setTheme,
-    }), [theme]);
+	// Для того чтоб статичный объект не перерисовывался (на каждый рендер компонента) используем useMemo
+	const defaultProps = useMemo(() => ({
+		theme,
+		setTheme,
+	}), [theme]);
 
-    return (
-        // в контексте темы вызываем провайдер и оборачиваем в него чилдрен из пропсов (в value передаем значение самого провайдера темы)
-        <ThemeContext.Provider value={defaultProps}>
-            {children}
-        </ThemeContext.Provider>
-    );
+	return (
+	// в контексте темы вызываем провайдер и оборачиваем в него чилдрен из пропсов (в value передаем значение самого провайдера темы)
+		<ThemeContext.Provider value={defaultProps}>
+			{children}
+		</ThemeContext.Provider>
+	);
 };
 
 export default ThemeProvider;

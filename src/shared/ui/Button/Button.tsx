@@ -15,19 +15,19 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 // указываем что это FC (функциональный компонент) чтобы могли использовать пропс сhildren и в качестве дженнерика передаем интерфейс ButtonProps
 export const Button: FC<ButtonProps> = (props) => {
-    const {
-        className,
-        children,
-        theme,
-        ...otherProps
-    } = props;
+	const {
+		className,
+		children,
+		theme,
+		...otherProps
+	} = props;
 
-    return (
-        <button
-            className={classNames(cls.Button, {}, [className, cls[theme]])}
-            {...otherProps}
-        >
-            {children}
-        </button>
-    )
-}
+	return (
+		<button
+			className={classNames(cls.Button, {}, [className, cls[theme]])}
+			{...otherProps}
+		>
+			{children}
+		</button>
+	);
+};
