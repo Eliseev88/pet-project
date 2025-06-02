@@ -9,10 +9,10 @@ export enum AppRoutes {
     ABOUT = 'about'
 }
 
-// для каждого маршрута указываем url
+// для каждого маршрута указываем url 
 export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: '/',
-    [AppRoutes.ABOUT]: '/about',
+    [AppRoutes.ABOUT]: '/about'
 };
 
 // объявляем роуты (маршрут и компонент)
@@ -24,5 +24,5 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     [AppRoutes.ABOUT]: {
         path: RoutePath.about,
         element: <AboutPage />,
-    },
+    }
 };

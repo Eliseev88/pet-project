@@ -1,11 +1,12 @@
 // импортируем типизация для аргументов ф-ции конструктора
-import { Configuration as DevServerConfiguration } from 'webpack-dev-server';
-import { BuildOptions } from './types/config';
+import { BuildOptions } from "./types/config";
 
 // импортируем типы для девсервера
+import { Configuration as DevServerConfiguration } from 'webpack-dev-server';
+
 
 // в качестве аргументов передаем опции сборки (мод, пути, isDev и тд)
-export function buildDevServer(options: BuildOptions): DevServerConfiguration {
+export function buildDevServer (options: BuildOptions): DevServerConfiguration  {
     return {
         port: options.port,
         // автоматически открывать в браузере страницу с приложением

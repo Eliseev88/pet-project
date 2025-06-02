@@ -13,5 +13,5 @@ export function buildResolvers(options: BuildOptions): ResolveOptions {
         mainFiles: ['index'],
         // если оставить алиасы пустые с текущими настройками, то пути будут вида "pages/*"
         alias: {},
-    };
+    }
 }

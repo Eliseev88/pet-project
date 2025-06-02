@@ -1,12 +1,19 @@
 // Провайдер темы представляет собой обычный компонент который вовзращает провайдер определенного контекста
 
+
 import { FC, useMemo, useState } from 'react';
 
 // импортируем контекст темы, название поля в ЛС и перечисление тем (enum)
 import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from '../lib/ThemeContext';
 
+
+
+
 // Явное приведение типов (тк ЛС возвращает строку, а нужен тип из перечисления Theme)
 const defaultTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme || Theme.LIGHT;
+
+
+
 
 interface ThemeProviderProps {
     initialTheme?: Theme;

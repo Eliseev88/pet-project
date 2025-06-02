@@ -7,5 +7,6 @@ export const AboutPageAsync = lazy(() => new Promise((res) => {
     setTimeout(() => res(import('./AboutPage')), 1500); // в импорт передаем необходимый компонент (обязательно должен быть экспортирован по дефолту)
 }));
 
+
 // Если компонент передаваемый в импорт не экспортируется по дефолту, тогда можно написать так
 // const AboutPageLazy = lazy(() => import('./about-page').then(module=>({default:module.AboutPage})));

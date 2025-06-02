@@ -1,5 +1,5 @@
 // в node.js есть стандартый модуль path, чтобы не хардкодить пути
-// const path = require('path');
+//const path = require('path');
 
 // тк изменили язык вебпака с js на ts теперь вместо require может использовать import (он идет в ts по умолчанию)
 import path from 'path';
@@ -17,16 +17,19 @@ import { buildDevServer } from './buildDevServer';
 
 // Configuration - тип который должен возвращать конфигурацию вебпака
 export function buildWebpackConfig(options: BuildOptions /* в качестве options принимаем мод, пути, isDev и др */): Configuration {
+
     // деструкторизируем объект с опциями
-    const { paths, mode, isDev } = options;
+    const {paths, mode, isDev} = options;
 
     return {
 
         // указваем в каком режиме производить сборку
         mode,
 
+
         // стартовая точка приложения
         entry: paths.entry,
+
 
         // куда будет делаться сборка
         output: {
@@ -34,11 +37,13 @@ export function buildWebpackConfig(options: BuildOptions /* в качестве 
             // [contenthash] указываем для подставление хэша чтобы браузер всегда отдавал новый файл а не из кэша
             filename: '[name].[contenthash].js', // имя главного файла в сборки
             path: paths.build,
-            clean: true, // для очистки дирректории от старых файлов сборки
+            clean: true // для очистки дирректории от старых файлов сборки
         },
+
 
         // Подключаем плагины
         plugins: buildPlugins(options),
+
 
         // Подключаем лоадеры
         module: {
