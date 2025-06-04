@@ -4,7 +4,8 @@ import { ButtonHTMLAttributes, FC } from 'react';
 
 // темы для кнопки
 export enum ThemeButton {
-    CLEAR = 'clear'
+    CLEAR = 'clear',
+	CLEAR_INVERTED = 'clearInverted',
 }
 
 // расширяем стандартными типами из реакта чтобы были атрибуты onClick, disabled и тд

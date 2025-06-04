@@ -6,14 +6,18 @@ import { ThemeProvider } from 'app/providers/ThemeProvider';
 
 // импортируем конфигурацию i18n (подключается автоматически)
 import 'shared/config/i18n/i18n';
+import { ErrorBoundary } from 'app/providers/ErrorBoundary';
 
 render(
 	// Подключаем роутер
 	<BrowserRouter>
-		{/* Оборачиваем в провайдер темы (чтобы работали темы и их переключение) */}
-		<ThemeProvider>
-			<App />
-		</ThemeProvider>
+		{/* оборачиваем в классовый компонент ErrorBoundary чтобы приложение отлавливало ошибки */}
+		<ErrorBoundary>
+			{/* Оборачиваем в провайдер темы (чтобы работали темы и их переключение) */}
+			<ThemeProvider>
+				<App />
+			</ThemeProvider>
+		</ErrorBoundary>
 	</BrowserRouter>,
 	document.getElementById('root')
 );

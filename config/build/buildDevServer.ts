@@ -15,5 +15,9 @@ export function buildDevServer (options: BuildOptions): DevServerConfiguration  
 		historyApiFallback: true,
 		// для обновления страницы без перезагрузки при внесении изменений в код
 		hot: true,
+		// отключаем вывод ошибок на весь экран
+		client: {
+			overlay: false,
+		}
 	};
 }
