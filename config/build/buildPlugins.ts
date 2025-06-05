@@ -5,6 +5,8 @@ import HTMLWebpackPlugin from 'html-webpack-plugin';
 import webpack from 'webpack';
 import { WebpackPluginInstance, ProgressPlugin } from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+
 
 // типы для передачи аргументов в ф-цию констурктора плагинов
 import { BuildOptions } from './types/config';
@@ -39,5 +41,13 @@ export function buildPlugins ({paths, isDev}: BuildOptions): WebpackPluginInstan
 
 		// для обновления страницы без перезагрузки при внесении изменений стили
 		new webpack.HotModuleReplacementPlugin(),
+
+		// запускается автоматически при сборке в дев режиме
+		new BundleAnalyzerPlugin(
+			{
+				// для автоматического открывания вкладки в браузере
+				openAnalyzer: true,
+			},
+		),
 	];
 }
